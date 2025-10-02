@@ -1,0 +1,17 @@
+{% extends 'base_profile.html' %}
+
+{% block title %}Asignar Roles {% endblock %}
+
+{% block body %}
+
+    <main>
+        {{success}}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn" type="submit">Guardar</button>
+        </form>
+        <a href="{% url 'user_list' %}" class="btn">Volver atrás</a>
+    </main>
+
+{% endblock %}

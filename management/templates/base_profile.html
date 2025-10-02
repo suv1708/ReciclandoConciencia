@@ -1,0 +1,51 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}| Reciclando Conciencia</title>
+    <link rel="stylesheet" href="{% static 'users/css/base_profile.css'%}">
+</head>
+<body>
+    <header>
+    <div class="navbar">
+
+    <a href="{% url 'home' %}"><img src="{% static 'core/images/logo.png' %}" alt="Logo Reciclando Conciencia"/></a>
+    <h1>Reciclando Conciencia</h1>
+    <p>Reciclar es vivir</p>
+      {% if user.is_authenticated %}
+      
+        <form action="{% url 'logout' %}" method="post">
+          {% csrf_token %}
+          <button type="submit" class="btn">Cerrar Sesión</button>
+        </form>
+        <a href="{% url 'profile' %}" class="btn">Perfil</a>
+        <a href="{% url 'edit_profile'%}" class="btn">Editar perfil</a>
+
+        {% else %}
+          <a href="{% url 'login' %}" class="btn">Iniciar Sesión</a>
+          <a href="{% url 'register' %}" class="btn">Crea tu cuenta</a>
+          
+        {% endif %}
+
+        {% if user.role == 'admin' %}
+            <a href="{% url 'admin_dashboard' %}" class="btn">Admin Dashboard</a>
+        {% else %}
+          <a href="{% url 'user_report_list' %}">Reportes</a>
+        {% endif %}
+    </nav>
+    </div>
+  </header>
+    {% block body %} {% endblock %}
+
+      <footer>
+        <h2>Contáctanos</h2>
+    <p>¿Tienes preguntas, sugerencias o quieres colaborar con nosotros?</p>
+    <p>¡Estaremos encantados de leerte!</p>
+    <p>Escríbenos a: <a href="mailto:info@reciclandoconciencia.org" class="email-link">info@reciclandoconciencia.org</a></p>
+    &copy; 2025 Reciclando Conciencia. Todos los derechos reservados.
+  </footer>
+</body>
+</html>

@@ -1,0 +1,29 @@
+{% extends "base_profile.html" %}
+{% load static %}
+
+{% block title%}Editar Perfil {% endblock %}
+{% block body %}
+  <h2>Editar Perfil</h2>
+  {% if form.errors %}
+  <div class="alert alert-danger">
+    <ul>
+      {% for field in form %}
+        {% for error in field.errors %}
+          <li>{{ field.label }}: {{ error }}</li>
+        {% endfor %}
+      {% endfor %}
+      {% for error in form.non_field_errors %}
+        <li>{{ error }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endif %}
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn">Guardar cambios</button>
+  </form>
+  <a href="{% url 'user_list' %}" class="btn">Volver atrás</a>
+{% endblock %}
+
+

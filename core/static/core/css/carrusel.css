@@ -1,0 +1,43 @@
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      padding: 20px;
+    }
+
+    .carrusel-container {
+      width: 100%;
+      max-width: 800px;
+      margin: auto;
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .carrusel {
+      display: flex;
+      width: calc(300px * 6); /* 6 imágenes */
+      animation: deslizar 20s linear infinite;
+    }
+
+    .carrusel img {
+      width: 300px;
+      height: 200px;
+      object-fit: cover;
+      margin-right: 10px;
+      border-radius: 10px;
+    }
+
+    @keyframes deslizar {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }

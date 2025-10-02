@@ -1,0 +1,16 @@
+{% extends 'base_profile.html' %}
+
+{% block title %}Crear reporte {% endblock %}
+
+{% block body %}
+
+<main>
+    <h2>Crear nuevo reporte</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn">Crear reporte</button>
+    </form>
+    <a href="{% url 'user_report_list' %}" class="btn">Volver atrás</a>
+</main>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base_profile.html' %}
+
+{% block title %}Editar reporte {% endblock %}
+
+{% block body %}
+<main>
+    <h2>Asignar reporte</h2>
+    {{success}}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn">Guardar cambios</button>
+    </form>
+    <a href="{% url 'report_list' %}" class="btn">Volver atrás</a>
+</main>
+{% endblock %}

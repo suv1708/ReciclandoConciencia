@@ -1,0 +1,141 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+      font-family: 'Open Sans', sans-serif;
+      background-color: #f0fdf4;
+      color: #333;
+      line-height: 1.6;
+  }
+
+  header {
+      background: linear-gradient(135deg, #a5d6a7, #81c784);
+      text-align: center;
+      padding: 40px 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      border-bottom: 4px solid #66bb6a;
+  }
+
+header img {
+    width: 120px;
+    margin-bottom: 15px;
+    animation: fadeIn 1.2s ease-in-out;
+    
+}
+
+  header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      color: #1b5e20;
+      margin-bottom: 10px;
+  }
+
+  header p {
+      font-size: 1.2rem;
+      color: #2e7d32;
+  }
+
+  nav {
+      margin-top: 30px;
+  }
+
+  .btn {
+      display: inline-block;
+      margin: 10px;
+      background-color: #43a047;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  .btn:hover {
+      background-color: #2e7d32;
+      transform: scale(1.05);
+  }
+
+  main {
+      padding: 60px 20px;
+      background-color: #ffffff;
+      max-width: 1000px;
+      margin: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      animation: fadeInUp 1s ease;
+  }
+
+  main h2 {
+      font-size: 2rem;
+      color: #2e7d32;
+      margin-bottom: 20px;
+  }
+
+  main p {
+      font-size: 1.1rem;
+      color: #444;
+  }
+
+  footer {
+      background-color: #a5d6a7;
+      color: #1b5e20;
+      text-align: center;
+      padding: 25px;
+      font-size: 0.95rem;
+      margin-top: 40px;
+  }
+
+  /* Animaciones */
+  @keyframes fadeIn {
+      from {
+          opacity: 0;
+          transform: scale(0.95);
+      }
+
+      to {
+          opacity: 1;
+          transform: scale(1);
+      }
+  }
+
+  @keyframes fadeInUp {
+      from {
+          opacity: 0;
+          transform: translateY(20px);
+      }
+
+      to {
+          opacity: 1;
+          transform: translateY(0);
+      }
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+      header h1 {
+          font-size: 2rem;
+      }
+
+      .btn {
+          padding: 10px 20px;
+          font-size: 0.95rem;
+      }
+
+      main {
+          padding: 30px 15px;
+      }
+  }
+
+img {
+    width: 120px;
+    animation: fadeIn 1.2s ease-in-out;
+    border-radius: 15%;
+    align-items: end;
+}

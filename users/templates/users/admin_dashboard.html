@@ -1,0 +1,21 @@
+{% extends 'base_profile.html' %}
+
+{% block title %}Panel de administración {% endblock %}
+
+{% block body %}
+<main>
+        <h2>Gestión de usuarios</h2>
+<ul>
+  <li><a href="{% url 'user_list' %}" class="btn">Ver usuarios</a></li>
+</ul>
+
+    <h2>Gestión de reportes</h2>
+<ul>
+  <li><a href="{% url 'report_list' %}" class="btn">Ver todos los reportes</a></li>
+
+</ul>
+
+</main>
+
+
+{% endblock %}

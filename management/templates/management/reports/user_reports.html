@@ -1,0 +1,52 @@
+{% extends 'base_profile.html' %}
+
+{% block title %}Reportes de usuario {% endblock %}
+
+{% block body %}
+<main>
+    <h2>Reportes de usuario</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Estado</th>
+                <th>Descripción</th>
+                {% if user.role == 'operator' %}
+                <th>Asignado a</th>
+                {% endif %}
+                <th>Fecha de creación</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for report in reports %}
+            <tr>
+                <td>{{ report.title }}</td>
+                <td>{{ report.get_status_display }}</td>
+                <td>{{ report.description|truncatechars:50 }}</td>
+                
+                {% if user.role == 'operator' %}
+                    <td>{{ report.assigned_to|capfirst }}</td>
+                    
+                {% endif %}
+                <td>{{ report.created_at|date:"Y-m-d H:i" }}</td>
+                <td><a href="{% url 'edit_report' report.pk %}" class="btn">editar</a>| <form action="{% url 'delete_report' report.pk %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+    <button class="btn" type="submit" onclick="return confirm('¿Seguro que quieres eliminar este reporte?');">
+                                Eliminar
+                </button>
+                
+                </td>
+                
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">No hay reportes disponibles.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'create_report' %}" class="btn">Crear nuevo reporte</a>
+    
+</main>
+{% endblock %}

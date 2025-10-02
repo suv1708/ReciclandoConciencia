@@ -1,0 +1,52 @@
+{% extends 'base_profile.html' %}
+
+{% block title %}Lista de reportes {% endblock %}
+
+{% block body %}
+
+<main>
+    <h2>Lista de reportes</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Estado</th>
+                <th>Operador asignado</th>
+                {% if report %}
+                <th>Acciones</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for report in reports %}
+            <tr>
+                <td>{{ report.title }}</td>
+                <td>{{ report.description|truncatechars:50 }}</td>
+                <td>{{ report.status }}</td>
+                {% if report.assigned_to %}
+                <td>{{ report.assigned_to.username }}</td>
+                {% else %}
+                <td>No asignado</td>
+                {% endif %}
+                <td>
+                    <a href="{% url 'admin_edit_report' report.id %}" class="btn">Editar</a> |
+                    <form action="{% url 'admin_delete_report' report.pk %}" method="post" style="display:inline;">
+    {% csrf_token %}
+    <button class="btn" type="submit" onclick="return confirm('¿Seguro que quieres eliminar este reporte?');">
+        Eliminar
+    </button>
+</form>
+                </td>
+            </tr>
+
+            {% empty %}
+            <tr>
+                <td colspan="4">No hay reportes disponibles.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'user_list' %}" class="btn">Volver atrás</a>
+</main>
+{% endblock %}

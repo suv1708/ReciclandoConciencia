@@ -1,0 +1,28 @@
+{% extends 'base_profile.html'%}
+{% load static %}
+
+{% block title %}Tu perfil {% endblock %}
+
+{% block body %}
+
+    <main>
+        <h2>Bienvenido, {{ user.first_name }}</h2>
+
+    <h2>Tu perfil:</h>
+    
+    <p><strong>Nombre:</strong> {{ user.first_name }} {{ user.last_name }}</p>
+    <p><strong>Teléfono:</strong> {{ user.phone }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Documento:</strong> {{ user.document_number }}</p>
+    <p><strong>Fecha de nacimiento:</strong> {{ user.birth_date }}</p>
+
+    {% if user.photo %}
+        <img src="{{ user.photo }}" alt="Foto de perfil">
+    {% else %}
+        <img src="{% static 'images/default_profile.png '%}" alt="Sin foto de perfil">
+    {% endif %}
+    
+    <a href="{% url 'edit_profile' %}" class="btn">Editar Perfil</a>
+
+    </main>
+{% endblock %}
