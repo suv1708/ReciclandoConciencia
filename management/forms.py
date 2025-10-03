@@ -1,3 +1,4 @@
+from .models import Activity, RecycledMaterial
 from django import forms
 from .models import *
 from django.contrib.auth import get_user_model
@@ -37,3 +38,18 @@ class UserReportEditForm(forms.ModelForm):
 
         if user and user.role == "citizen":
             self.fields["status"].disabled = True
+
+
+class ActivityForm(forms.ModelForm):
+    class Meta:
+        model = Activity
+        fields = ["title", "description", "activity_type",
+                  "date", "location", "participants_count"]
+
+
+class RecycledMaterialForm(forms.ModelForm):
+    class Meta:
+        model = RecycledMaterial
+        fields = ["material_type", "quantity_kg"]
+
+
