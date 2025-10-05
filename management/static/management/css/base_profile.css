@@ -41,7 +41,7 @@ nav {
     margin-top: 30px;
 }
 
-.btn {
+.btn_m {
     display: inline-block;
     margin: 10px;
     background-color: #43a047;
@@ -56,7 +56,7 @@ nav {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-.btn:hover {
+.btn_m:hover {
     background-color: #2e7d32;
     transform: scale(1.05);
 }

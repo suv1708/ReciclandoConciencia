@@ -45,6 +45,20 @@ class ActivityForm(forms.ModelForm):
         model = Activity
         fields = ["title", "description", "activity_type",
                   "date", "location", "participants_count"]
+        labels = {
+            "title": "Título",
+            "description": "Descripción",
+            "activity_type": "Tipo de Actividad",
+            "date": "Fecha",
+            "location": "Ubicación",
+            "participants_count": "Número de Participantes",
+        }
+        widgets = {
+            "date": forms.DateInput(attrs={"type": "date"}),
+            "description": forms.Textarea(attrs={"rows": 4}),
+            "location": forms.TextInput(attrs={"class": "form-control"}),
+            "participants_count": forms.NumberInput(attrs={"min": 0}),
+        }
 
 
 class RecycledMaterialForm(forms.ModelForm):

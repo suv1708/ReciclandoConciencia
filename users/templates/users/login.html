@@ -10,7 +10,7 @@
     <h2>Iniciar Sesión</h2>
     <form method="post">
         {% csrf_token %}
-        {{ form|crispy }}
+        {{ form|crispy.as }}
         <button type="submit" class="btn">Entrar</button>
     </form>
 

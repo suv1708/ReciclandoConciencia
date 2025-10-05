@@ -15,12 +15,17 @@
     <p><strong>Email:</strong> {{ user.email }}</p>
     <p><strong>Documento:</strong> {{ user.document_number }}</p>
     <p><strong>Fecha de nacimiento:</strong> {{ user.birth_date }}</p>
-
-    {% if user.photo %}
-        <img src="{{ user.photo }}" alt="Foto de perfil">
-    {% else %}
-        <img src="{% static 'images/default_profile.png '%}" alt="Sin foto de perfil">
-    {% endif %}
+    <div class="profile-picture">
+        <strong>Foto de perfil:</strong><br>
+        {% if user.photo %}
+            <img src="{{ user.photo.url }}" alt="Foto de perfil" width="150">
+        {% else %}
+            <p>No has subido una foto de perfil.</p>
+        {% endif %}
+    </div>
+    
+        
+    
     
     <a href="{% url 'edit_profile' %}" class="btn">Editar Perfil</a>
 

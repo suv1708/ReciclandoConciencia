@@ -1,0 +1,22 @@
+{% extends "base_profile.html" %}
+
+{% load static %}
+
+{% block title %}Editar Actividad {% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <h2 class="mb-3">Editar Actividad</h2>
+    <div class="card mb-4">
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            </form>
+            <a href="{% url 'activity_list' %}" class="btn btn-secondary">Cancelar</a>
+        </div>
+    </div>
+</div>
+    
+{% endblock %}

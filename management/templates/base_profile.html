@@ -13,16 +13,18 @@
     <div class="navbar">
 
     <a href="{% url 'home' %}"><img src="{% static 'core/images/logo.png' %}" alt="Logo Reciclando Conciencia"/></a>
-    <h1>Reciclando Conciencia</h1>
+    <h1 class="navbar-brand">Reciclando Conciencia</h1>
     <p>Reciclar es vivir</p>
       {% if user.is_authenticated %}
       
+        <a href="{% url 'profile' %}" class="btn">Perfil</a>
+        <a href="{% url 'edit_profile'%}" class="btn">Editar perfil</a>
+        <a href="{% url 'activity_list' %}" class="btn">Actividades</a>
         <form action="{% url 'logout' %}" method="post">
           {% csrf_token %}
           <button type="submit" class="btn">Cerrar Sesión</button>
         </form>
-        <a href="{% url 'profile' %}" class="btn">Perfil</a>
-        <a href="{% url 'edit_profile'%}" class="btn">Editar perfil</a>
+
 
         {% else %}
           <a href="{% url 'login' %}" class="btn">Iniciar Sesión</a>

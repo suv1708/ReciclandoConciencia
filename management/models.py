@@ -5,9 +5,9 @@ from django.conf import settings
 
 
 class Project(models.Model):
-    name = models.CharField(max_length=200)
-    description = models.TextField()
-    start_date = models.DateField()
+    title = models.CharField(max_length=200)
+    description = models.TextField(null=True, blank=True)
+    start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
     created_by = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True)
@@ -24,11 +24,11 @@ class Activity(models.Model):
         ("otro", "Otro"),
     ]
 
-    title = models.CharField(max_length=200)
-    description = models.TextField()
+    title = models.CharField(max_length=200, default="Sin título")
+    description = models.TextField(null=True, blank=True)
     activity_type = models.CharField(max_length=20, choices=ACTIVITY_TYPES, default="recoleccion")
     date = models.DateField(null=True, blank=True)
-    location = models.CharField(max_length=200)
+    location = models.CharField(max_length=200, null=True, blank=True)
     created_by = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True)
     participants_count = models.PositiveIntegerField(default=0)

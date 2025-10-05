@@ -19,6 +19,7 @@
     <p>Reciclar es vivir</p>
       {% if user.is_authenticated %}
           <a href="{% url 'profile' %}" class="btn">Perfil</a>
+          <a href="{% url 'activity_list' %}" class="btn">Actividades</a>
           {% if user.role == 'admin' %}
             <a href="{% url 'admin_dashboard' %}" class="btn">Admin Dashboard</a>
           {% else %}

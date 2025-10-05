@@ -1,0 +1,20 @@
+{% extends "base_profile.html" %}
+
+{% load static %}
+
+{% block title %}Detalle de Actividad {% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <h2 class="mb-3">{{ activity.title }}</h2>
+    <p><strong>Tipo de Actividad:</strong> {{ activity.get_activity_type_display }}</p>
+    <p><strong>Fecha:</strong> {{ activity.date }}</p>
+    <p><strong>Descripción:</strong></p>
+    <p>{{ activity.description }}</p>
+
+    {% if user.role == "admin" or user.role == "operator" %}
+        <a href="{% url 'activity_edit' activity.pk %}" class="btn btn-primary mb-3">✏️ Editar Actividad</a>
+    {% endif %}
+    <a href="{% url 'activity_list' %}" class="btn btn-success mb-3">Volver a la Lista</a>
+</div>
+{% endblock %}
