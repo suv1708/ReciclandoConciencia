@@ -34,10 +34,10 @@ header img {
   width: 120px;
   height: 120px;
   object-fit: cover;
-  border-radius: 20px; /* mantiene esquinas redondeadas sin deformar */
+  border-radius: 20px;
+  /* mantiene esquinas redondeadas sin deformar */
   animation: fadeIn 1s ease;
 }
-
 /* ===== TÍTULOS Y FRASES ===== */
 header h1 {
   font-family: 'Playfair Display', serif;
@@ -174,3 +174,11 @@ footer a:hover {
     margin: 25px 10px;
   }
 }
+
+ul li {
+      margin-bottom: 8px;
+      list-style-type: none;
+  }
+
+
+

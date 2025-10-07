@@ -9,5 +9,6 @@ from django.contrib.auth.admin import UserAdmin
 class CustomUserAdmin(UserAdmin):
     fieldsets = UserAdmin.fieldsets + (
         ("Campos adicionales", {
-         "fields": ("document_number", "phone", "birth_date", "role")}),
+         "fields": ("document_number", "phone", "birth_date", "role", "photo", "terms_accepted")},
+        ),
     )

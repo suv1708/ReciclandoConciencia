@@ -14,6 +14,7 @@ from django.views import View
 
 
 class UserLoginView(LoginView):
+    form_class = LoginForm
     template_name = 'users/login.html'
     redirect_authenticated_user = True
     next_page = reverse_lazy('profile')
