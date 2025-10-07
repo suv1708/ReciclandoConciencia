@@ -1,10 +1,12 @@
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AuthenticationForm
 from django import forms
 from django.contrib.auth import get_user_model
 from django.utils import timezone
 
 class RegistrationForm(UserCreationForm):
-    email = forms.EmailField(required=True, help_text='Required. Enter a valid email address.')
+    
+    email = forms.EmailField(required=True)
+    
 
     class Meta:
         model = get_user_model()
@@ -16,6 +18,14 @@ class RegistrationForm(UserCreationForm):
             'password2': 'Confirmar Contraseña',
         }
         
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            self.fields['email'].widget.attrs.update({
+                'class': 'form-control', 
+                'placeholder': 'Email'
+                })
+            
+            
         help_texts = {}
 
     def save(self, commit=True):
@@ -26,10 +36,26 @@ class RegistrationForm(UserCreationForm):
         return user
     
 
-class LoginForm(forms.Form):
-    username = forms.CharField(max_length=150, required=True)
-    password = forms.CharField(widget=forms.PasswordInput, required=True)
-    
+class LoginForm(AuthenticationForm):
+    def __init__(self, *args, **kwargs):
+        # Extraer el request si lo estás pasando
+        self.request = kwargs.pop('request', None)
+        super().__init__(*args, **kwargs)
+
+
+        self.fields['username'].widget.attrs.update({
+            'class': 'form-control',
+            'placeholder': 'Correo o usuario'
+        })
+        self.fields['password'].widget.attrs.update({
+            'class': 'form-control',
+            'placeholder': 'Contraseña'
+        })
+
+
+        self.fields['username'].label = 'Usuario'
+        self.fields['password'].label = 'Contraseña'
+
 
 class ProfileForm(UserChangeForm):
     password = None  # Exclude the password field
@@ -98,7 +124,7 @@ class EditProfileForm(forms.ModelForm):
             'last_name': forms.TextInput(attrs={'class': 'form-control'}),
             'phone': forms.TextInput(attrs={'class': 'form-control'}),
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
-            'photo': forms.ClearableFileInput(attrs={'class': 'form-control-file'}),
+            'photo': forms.FileInput(attrs={'class': 'form-control-file'}),
             
             
 
@@ -119,8 +145,7 @@ class RoleAssignmentForm(forms.Form):
     
 
 class CreateUserForm(UserCreationForm):
-    email = forms.EmailField(required=True, help_text='Required. Enter a valid email address.')
-
+    email = forms.EmailField(required=True, help_text='Requerido. Ingresa una dirección de correo electrónico válida.')
     class Meta:
         model = get_user_model()
         fields = ('username', 'email', 'password1', 'password2', 'role')
@@ -131,6 +156,7 @@ class CreateUserForm(UserCreationForm):
             'password2': 'Confirmar Contraseña',
             'role': 'Rol',
         }
+        
 
     def save(self, commit=True):
         user = super().save(commit=False)

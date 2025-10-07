@@ -14,7 +14,7 @@
                 <th>Estado</th>
                 <th>Operador asignado</th>
                 {% if report %}
-                <th>Acciones</th>
+                    <th>Acciones</th>
                 {% endif %}
             </tr>
         </thead>
@@ -29,6 +29,7 @@
                 {% else %}
                 <td>No asignado</td>
                 {% endif %}
+                
                 <td>
                     <a href="{% url 'admin_edit_report' report.id %}" class="btn">Editar</a> |
                     <form action="{% url 'admin_delete_report' report.pk %}" method="post" style="display:inline;">

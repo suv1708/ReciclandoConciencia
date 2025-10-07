@@ -1,48 +1,60 @@
 
+from django.contrib.auth.models import User
 from django.db import models
 from django.conf import settings
 
 
 class Project(models.Model):
-    name = models.CharField("Nombre", max_length=200)
-    description = models.TextField("Descripción")
-    start_date = models.DateField("Fecha de inicio", blank=True, null=True)
-    end_date = models.DateField("Fecha de fin", blank=True, null=True)
-    responsible = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        related_name="projects_responsible"
-    )
+    title = models.CharField(max_length=200)
+    description = models.TextField(null=True, blank=True)
+    start_date = models.DateField(null=True, blank=True)
+    end_date = models.DateField(null=True, blank=True)
+    created_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
         return self.name
 
 
 class Activity(models.Model):
-    project = models.ForeignKey(
-        Project, on_delete=models.CASCADE, related_name="activities")
-    name = models.CharField("Nombre", max_length=200)
-    description = models.TextField("Descripción", blank=True, null=True)
-    execution_date = models.DateField(
-        "Fecha de ejecución", blank=True, null=True)
-    responsible = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.SET_NULL,
-        null=True,
-        related_name="activities_responsible"
-    )
+    ACTIVITY_TYPES = [
+        ("recoleccion", "Jornada de recolección"),
+        ("taller", "Taller / Capacitación"),
+        ("campaña", "Campaña de sensibilización"),
+        ("otro", "Otro"),
+    ]
+
+    title = models.CharField(max_length=200, default="Sin título")
+    description = models.TextField(null=True, blank=True)
+    activity_type = models.CharField(max_length=20, choices=ACTIVITY_TYPES, default="recoleccion")
+    date = models.DateField(null=True, blank=True)
+    location = models.CharField(max_length=200, null=True, blank=True)
+    created_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True)
+    participants_count = models.PositiveIntegerField(default=0)
 
     def __str__(self):
-        return f"{self.name} ({self.project.name})"
+        return f"{self.title} - {self.date}"
 
 
-class Participation(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    activity = models.ForeignKey(Activity, on_delete=models.CASCADE)
-    role = models.CharField("Rol en la actividad", max_length=100)
+class RecycledMaterial(models.Model):
+    MATERIAL_TYPES = [
+        ("plastico", "Plástico"),
+        ("vidrio", "Vidrio"),
+        ("papel", "Papel / Cartón"),
+        ("metal", "Metal"),
+        ("organico", "Orgánico"),
+        ("otro", "Otro"),
+    ]
+
+    activity = models.ForeignKey(
+        Activity, related_name="materials", on_delete=models.CASCADE)
+    material_type = models.CharField(max_length=20, choices=MATERIAL_TYPES)
+    quantity_kg = models.DecimalField(
+        max_digits=6, decimal_places=2)  # hasta 9999.99 kg
 
     def __str__(self):
-        return f"{self.user.username} en {self.activity.name} como {self.role}"
+        return f"{self.material_type} - {self.quantity_kg} kg"
 
 
 class Report(models.Model):

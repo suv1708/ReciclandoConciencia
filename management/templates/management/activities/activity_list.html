@@ -1,0 +1,32 @@
+{% extends "base_profile.html" %}
+
+{% load static %}
+
+{% block title %}Lista de Actividades {% endblock %}
+
+{% block body %}
+
+<div class="container mt-4">
+{% if user.role == "admin" or user.role == "operator" %}
+    <h2 class="mb-3">Actividades registradas</h2>
+    <a href="{% url 'activity_create' %}" class="btn btn-success mb-3">➕ Nueva Actividad</a>
+{% else %}
+    <h2 class="mb-3">Actividades</h2>
+{% endif %}
+
+    {% if activities %}
+        <div class="list-group">
+            {% for activity in activities %}
+                <a href="{% url 'activity_detail' activity.pk %}" class="list-group-item list-group-item-action">
+                    <h5 class="mb-1">{{ activity.title }}</h5>
+                    <small class="text-muted">{{ activity.date }} • {{ activity.get_activity_type_display }}</small>
+                    <p class="mb-1">{{ activity.description|truncatewords:15 }}</p>
+                </a>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info">No hay actividades registradas aún.</div>
+    {% endif %}
+</div>
+
+{% endblock %}
