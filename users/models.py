@@ -8,7 +8,7 @@ class CustomUser(AbstractUser):
     phone = models.CharField("Teléfono", max_length=15, blank=True, null=True)
     birth_date = models.DateField("Fecha de Nacimiento", blank=True, null=True)
     photo = models.ImageField(
-        "Foto de Perfil", upload_to="profile_photos/", blank=True, null=True, default="profile_photos/default_photo.jpg")
+        "Foto de Perfil", upload_to="profile_photos/", blank=True, null=True, default="profile_photos/default.jpg")
     terms_accepted = models.BooleanField("Términos Aceptados", default=False)
 
     ROLE_CHOICES = [
