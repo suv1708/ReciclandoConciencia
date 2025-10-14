@@ -4,19 +4,21 @@
 {% block title %}Galería{% endblock %}
 
 {% block body %}
-    <h2>Galería de Reciclaje</h2>
-    <p>Explora algunos momentos de nuestras campañas, talleres y actividades comunitarias enfocadas en la sostenibilidad.</p>
+  <main>
+    <div class="container">
+      <h2>Galería de Reciclaje</h2>
+      <p>Explora algunos momentos de nuestras campañas, talleres y actividades comunitarias enfocadas en la sostenibilidad.</p>
+  </div>
 
   <div class="carrusel-container">
     <div class="carrusel">
       <img src="{% static 'core/images/people-recycling.png '%}" alt="Gente en campaña de reciclaje">
       <img src="{% static 'core/images/collage.jpg '%}" alt="Collage">
       <img src="{% static 'core/images/recycling.png '%}" alt="Reciclando">
-
     </div>
   </div>
+  </main>
 {% endblock %}
 
-</body>
-</html>
+
 

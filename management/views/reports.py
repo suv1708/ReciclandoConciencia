@@ -31,7 +31,6 @@ class CreateReportView(CreateView):
     success_url = reverse_lazy("user_report_list")
     
 
-    
     def get(self, request):
         form = self.form_class()
         return render(request, "management/reports/create_report.html", {
