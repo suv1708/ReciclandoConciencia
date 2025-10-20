@@ -9,6 +9,8 @@
     <title>{% block title %}{% endblock %}| Reciclando Conciencia</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'users/css/base_profile.css'%}">
+    <link rel="stylesheet" href="{% static 'core/css/chatbot.css'%}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
   
@@ -59,5 +61,29 @@
     <p>Escríbenos a: <a href="mailto:info@reciclandoconciencia.org" class="email-link">info@reciclandoconciencia.org</a></p>
     &copy; 2025 Reciclando Conciencia. Todos los derechos reservados.
   </footer>
+
+    <!-- Chatbot -->
+    <button id="chat-toggle-btn" class="chat-toggle-btn">
+        <span class="material-icons">
+            eco </span>
+    </button>
+
+    <div id="chatbot-container" class="chatbot-container hidden">
+        <div class="chat-header">
+            <h3>EcoBot 🌿</h3>
+            <span id="close-chat-btn" class="material-icons close-btn">close</span>
+        </div>
+        <div id="chat-messages" class="chat-messages">
+            <div class="message bot-message">
+                ¡Hola! 🌎 Soy tu asistente ecológico. ¿Quieres aprender sobre reciclaje?
+            </div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="user-input" placeholder="Escribe tu pregunta...">
+            <button id="send-btn">Enviar</button>
+        </div>
+    </div>
+
+    <script src="{% static 'core/js/chatbot.js' %}"></script>
 </body>
 </html>
