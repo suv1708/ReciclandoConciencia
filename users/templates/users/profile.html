@@ -5,20 +5,14 @@
 {% load static %}
 
 
-{% block title %}Tu perfil{% endblock %}
+{% block title %}Tu perfil {% endblock %}
 
 {% block body %}
 <main class="profile-container">
 
   <section class="profile-header">
     <div class="profile-picture">
-      {% if user.photo %}
         <img src="{{ user.photo.url }}" alt="Foto de perfil" class="profile-img">
-      {% else %}
-        <div class="profile-placeholder">
-          <img src="{% static 'media/profile_photos/default_profile.jpg' %}" alt="Foto de perfil" class="profile-img">
-        </div>
-      {% endif %}
     </div>
     <div class="profile-info">
       <h2>¡Hola, {{ user.first_name }}! 👋</h2>

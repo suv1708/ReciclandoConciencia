@@ -1,12 +1,12 @@
 from django.views.generic import UpdateView
 from django.contrib.auth import login
-from django.contrib.auth.decorators import login_required
+
 from django.shortcuts import render, redirect
 from django.contrib.auth.views import LoginView
 from django.contrib import messages
-from ..forms import LoginForm, RegistrationForm, ProfileUpdateForm, EditProfileForm, CompleteProfileForm
+from ..forms import LoginForm, RegistrationForm, EditProfileForm
 from django.urls import reverse_lazy
-from django.views.generic import UpdateView, CreateView
+from django.views.generic import  CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from ..models import *
 from django.contrib.auth import get_user_model
@@ -36,7 +36,9 @@ class UserRegisterView(CreateView):
 
 class ProfileView(LoginRequiredMixin, View):
     def get(self, request):
-        return render(request, "users/profile.html", {"user": request.user})
+        return render(request, "users/profile.html", {
+            "user": request.user
+            })
 
 
 class EditProfileView(LoginRequiredMixin, View):

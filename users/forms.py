@@ -88,14 +88,16 @@ class ProfileUpdateForm(forms.ModelForm):
 class CompleteProfileForm(forms.ModelForm):
     class Meta:
         model = get_user_model()
-        fields = ['first_name', 'last_name', 'phone', 'document_number', 'birth_date', 'terms_accepted']
+        fields = ['first_name', 'last_name', 'phone', 'document_number', 'birth_date', 'photo', 'terms_accepted']
         widgets = {
             'first_name': forms.TextInput(attrs={'class': 'form-control'}),
             'last_name': forms.TextInput(attrs={'class': 'form-control'}),
             'phone': forms.TextInput(attrs={'class': 'form-control'}),
             'document_number': forms.TextInput(attrs={'class': 'form-control'}),
             'birth_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date', 'max': timezone.now().date()}),
+            'photo': forms.FileInput(attrs={'class': 'form-control-file'}),
             'terms_accepted': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+            
             
         }
         
@@ -105,6 +107,7 @@ class CompleteProfileForm(forms.ModelForm):
             'phone': 'Teléfono',
             'document_number': 'Número de Documento',
             'birth_date': 'Fecha de Nacimiento',
+            'photo': 'Foto de Perfil',
             'terms_accepted': 'Acepto los términos y condiciones',
         }
     def clean_terms_accepted(self):
